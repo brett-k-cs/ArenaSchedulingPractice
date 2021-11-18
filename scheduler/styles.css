@@ -46,6 +46,21 @@
     vertical-align: middle;
 }
 
+.classPicker > .avaliableClass {
+    background-color: rgb(48, 48, 48);
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+    display: table;
+    text-align: center;
+    width: 100%;
+}
+
+.classPicker > .avaliableClass > span {
+    display: table-cell;
+    vertical-align: middle;
+}
+
 .sheduleContainer {
     display: inline-flex;
     padding: 1rem;
