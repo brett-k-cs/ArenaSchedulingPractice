@@ -64,3 +64,11 @@ gap: var(--gap, 1rem);
 grid-auto-columns: 1fr;
 grid-auto-flow: column;
 }
+
+.backArrow {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    width: 3rem;
+    height: auto;
+}
