@@ -7,7 +7,7 @@ let aDayHeaders = document.getElementsByClassName('aDay')
 let classDivs = document.getElementsByClassName('class');
 // let avaliableClasses = document.getElementsByClassName('avaliableClass');
 
-let classPicker = documentg.getElementsByClassName('classPicker')[0]
+let classPicker = document.getElementsByClassName('classPicker')[0]
 
 classPicker.addEventListener("mousedown", chooseClass, false);
 
