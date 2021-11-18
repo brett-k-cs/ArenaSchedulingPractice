@@ -103,6 +103,10 @@
     margin-top: -1px;
 }
 
+#scheduleViewer > .highlighted {
+    background-color: rgb(48, 48, 48);
+}
+
 #scheduleViewer > .header {
     background-color: #222;
     color: white;

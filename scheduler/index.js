@@ -46,17 +46,14 @@ function chooseClass(event) {
 }
 
 function highLightClasses(period) {
-    console.log(classDivs.length)
     let day = period == 0 || period == 1 || period == 8 ? "both" : "aDay"
     if(day == "aDay" && (period == 5 || period == 6 || period == 7)) {
         day = "bDay"
         period -= 4
     }
     for (let i = 0; i < 4; i++) {
-        if(day == 'both' || (whichDay == 'aDay' && i % 2 == 0) || (whichDay == 'bDay' && i % 2 == 1)) {
+        if(day == 'both' || (day == 'aDay' && i % 2 == 0) || (day == 'bDay' && i % 2 == 1)) {
             const element = classDivs[(period * 4 + i)]
-            console.log(period * 4 + i)
-            console.log(element)
             element.classList.add('highlighted')
         }
     }
