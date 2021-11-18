@@ -7,11 +7,11 @@ let aDayHeaders = document.getElementsByClassName('aDay')
 let classDivs = document.getElementsByClassName('class');
 // let avaliableClasses = document.getElementsByClassName('avaliableClass');
 
-classDivs.forEach(element => {
+for (let i = 0; i < classDivs.length; i++) {
     let span = document.createElement('span')
     span.innerHTML = "Empty"
-    element.appendChild(span)
-});
+    classDivs[i].appendChild(span)
+}
 
 let classPicker = document.getElementsByClassName('classPicker')[0]
 
