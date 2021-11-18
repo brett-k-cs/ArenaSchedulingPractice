@@ -39,40 +39,24 @@ function chooseClass(event) {
     if(event.target.id && classes[event.target.id]) {
         let classInfo = classes[event.target.id]
         let avaliablePeriods = classInfo.avaliablePeriods
-        if(avaliablePeriods.includes(0)) {
-            highLightClasses(0, 'both')
-        }
-        if(avaliablePeriods.includes(1)) {
-            highLightClasses(1, 'both')
-        }
-        if(avaliablePeriods.includes(2)) {
-            highLightClasses(0, 'aDay')
-        }
-        if(avaliablePeriods.includes(3)) {
-            highLightClasses(0, 'aDay')
-        }
-        if(avaliablePeriods.includes(4)) {
-            highLightClasses(0, 'aDay')
-        }
-        if(avaliablePeriods.includes(5)) {
-            highLightClasses(0, 'bDay')
-        }
-        if(avaliablePeriods.includes(6)) {
-            highLightClasses(0, 'bDay')            
-        }
-        if(avaliablePeriods.includes(7)) {
-            highLightClasses(0, 'bDay')
-        }
-        if(avaliablePeriods.includes(8)) {
-            highLightClasses(8, 'both')
+        for (let l = 0; l < avaliablePeriods.length; l++) {
+            highLightClasses(avaliablePeriods[l])
         }
     }
 }
 
-function highLightClasses(period, whichDay) {
+function highLightClasses(period) {
+    console.log(classDivs.length)
+    let day = period == 0 || period == 1 || period == 8 ? "both" : "aDay"
+    if(day == "aDay" && (period == 5 || period == 6 || period == 7)) {
+        day = "bDay"
+        period -= 4
+    }
     for (let i = 0; i < 4; i++) {
-        if(whichDay == 'both' || (whichDay == 'aDay' && i % 2 == 0) || (whichDay == 'bDay' && i % 2 == 1)) {
-            const element = classDivs[period * 4 + i]
+        if(day == 'both' || (whichDay == 'aDay' && i % 2 == 0) || (whichDay == 'bDay' && i % 2 == 1)) {
+            const element = classDivs[(period * 4 + i)]
+            console.log(period * 4 + i)
+            console.log(element)
             element.classList.add('highlighted')
         }
     }
