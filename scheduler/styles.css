@@ -53,7 +53,7 @@
     text-align: center;
     display: table;
     text-align: center;
-    width: 100%;
+    width: calc(100% - 2rem);
 }
 
 .classPicker > .avaliableClass > span {

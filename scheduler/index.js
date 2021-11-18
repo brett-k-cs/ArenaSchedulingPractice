@@ -7,6 +7,12 @@ let aDayHeaders = document.getElementsByClassName('aDay')
 let classDivs = document.getElementsByClassName('class');
 // let avaliableClasses = document.getElementsByClassName('avaliableClass');
 
+classDivs.forEach(element => {
+    let span = document.createElement('span')
+    span.innerHTML = "Empty"
+    element.appendChild(span)
+});
+
 let classPicker = document.getElementsByClassName('classPicker')[0]
 
 classPicker.addEventListener("mousedown", chooseClass, false);
