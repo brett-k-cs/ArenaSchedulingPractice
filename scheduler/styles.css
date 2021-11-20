@@ -1,19 +1,16 @@
 .mainContainer {
     margin: 0 auto;
-    display: flex;
-    height: 98vh;
-    overflow-y: hidden;
+    display: none;
+    overflow-y: auto;
     align-items: center;
+    height: 100%;
 }
 
-/* @media only screen and (max-width: 1350px) {
-    .mainContainer {
-        display: block !important;
-    }
-  } */
+.mainContainer > div {
+    margin: 0 auto;
+}
 
 .leftContainer {
-    display: inline-flex;
     text-align: left;
     padding: 1rem;
     width: 15vw;
@@ -26,7 +23,7 @@
     height: 700px;
     min-width: 400px;
     background-color: rgb(19, 19, 19);
-    margin-left: 20px;
+    margin: 0 auto;
 }
 
 .classPicker > .header {
@@ -69,7 +66,6 @@
 }
 
 .sheduleContainer {
-    display: inline-flex;
     padding: 1rem;
     width: 55vw;
     min-width: 450px;
@@ -86,6 +82,7 @@
     background-color: rgb(19, 19, 19);
     /* border: 1px solid whitesmoke; */
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 16px;
     gap: 5px;
 }
 

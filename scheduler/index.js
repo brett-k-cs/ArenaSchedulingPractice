@@ -232,6 +232,9 @@ function selectPeriod(event) {
 
         selectedClass = null;
         selectedClassInfo = null;
+        for (let i = 0; i < classDivs.length; i++) {
+            if(classDivs[i].classList.contains('super_highlighted')) classDivs[i].classList.remove('super_highlighted')
+        }
     }
 }
 
@@ -241,4 +244,24 @@ scheduleViewer.addEventListener("mouseover", highlightConnectedPeriods, false);
 function htmlDecode(input) {
     var doc = new DOMParser().parseFromString(input, "text/html");
     return doc.documentElement.textContent;
+}
+
+window.addEventListener("resize", resizeFunc);
+window.addEventListener("load", resizeFunc);
+
+function resizeFunc() {
+
+    var width = window.innerWidth
+    || document.documentElement.clientWidth
+    || document.body.clientWidth;
+
+    if(width < 1200) {
+        document.getElementById('main-text').innerHTML = "Choose your <span class=\"text-primary\">classes</span> below."
+        document.getElementsByClassName('mainContainer')[0].style.display = "block";
+        document.getElementsByClassName('classPicker')[0].style.marginLeft = "";
+    } else {
+        document.getElementById('main-text').innerHTML = "Choose your <span class=\"text-primary\">classes</span> to the right."
+        document.getElementsByClassName('classPicker')[0].style.marginLeft = "20px"
+        document.getElementsByClassName('mainContainer')[0].style.display = "flex";
+    }
 }
