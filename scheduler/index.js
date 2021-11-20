@@ -100,12 +100,13 @@ function highlightConnectedPeriods(event) {
         if(classDivs[i].classList.contains('super_highlighted')) classDivs[i].classList.remove('super_highlighted')
     }
 
-    if(!target) return;
+    if(!target) return
 
     if(target.classList.contains('highlighted')) {
 
+        let ind = Array.from(classDivs).indexOf(target)
+        
         if(selectedClassInfo.semesterLength == 1) {
-            let ind = Array.from(classDivs).indexOf(target)
             if(ind <= 7 || ind >= 20) {
                 // Is on both a and b days
                 if(ind % 4 == 0 || ind % 4 == 2) {
@@ -120,8 +121,6 @@ function highlightConnectedPeriods(event) {
                 classDivs[ind].classList.add('super_highlighted')
             }
         } else if(selectedClassInfo.semesterLength == 2) {
-            let ind = Array.from(classDivs).indexOf(target)
-            console.log(ind)
             if(ind <= 7 || ind >= 20) {
                 // Is on both a and b days
                 if(ind % 4 == 1) {
