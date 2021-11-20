@@ -73,7 +73,7 @@
 }
 
 #scheduleViewer {
-    width: 95%;
+    width: 97.5%;
     height: 700px;
     margin: 0 auto;
     display: grid;
@@ -91,6 +91,8 @@
     padding: 1rem;
     text-align: center;
     display: table;
+    overflow: hidden;
+    table-layout:fixed;
     text-align: center;
     cursor: auto;
 }

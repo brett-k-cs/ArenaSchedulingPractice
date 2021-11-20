@@ -257,6 +257,7 @@ function resizeFunc() {
 
     if(width < 1200) {
         document.getElementById('main-text').innerHTML = "Choose your <span class=\"text-primary\">classes</span> below."
+        document.getElementsByClassName('sheduleContainer')[0].style.width = "90%"
         document.getElementsByClassName('mainContainer')[0].style.display = "block";
         document.getElementsByClassName('classPicker')[0].style.marginLeft = "";
     } else {
