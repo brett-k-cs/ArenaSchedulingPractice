@@ -115,6 +115,10 @@
     cursor: pointer;
 }
 
+#scheduleViewer > .super_highlighted {
+    background-color: rgb(66, 66, 66);
+}
+
 #scheduleViewer > .header {
     background-color: #222;
     color: white;

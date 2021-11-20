@@ -12,10 +12,16 @@ classPicker.addEventListener("mousedown", chooseClass, false);
 
 let classes = {
     testClass: {
+        semesterLength: 2,
         avaliablePeriods: [0, 1, 2, 6, 7, 8]
     },
     "Principles of Engineering": {
+        semesterLength: 1,
         avaliablePeriods: [2, 3, 5, 8]
+    },
+    "Engineering Design & Presentation 1": {
+        semesterLength: 2,
+        avaliablePeriods: [0, 1, 3, 5, 8]
     }
 }
 
@@ -32,6 +38,7 @@ for (let i = 0; i < Object.keys(classes).length; i++) {
 }
 
 let selectedClass = null;
+let selectedClassInfo = null;
 
 function chooseClass(event) {
     if((event.target.nodeName == "SPAN" && event.target?.parentElement?.id && classes[event.target.parentElement.id]) || event.target.id && classes[event.target.id]) {
@@ -48,7 +55,11 @@ function chooseClass(event) {
                 highLightClasses(avaliablePeriods[l])
             }
             selectedClass = curSelectedClass;
-        } else selectedClass = null
+            selectedClassInfo = classInfo;
+        } else {
+            selectedClass = null
+            selectedClassInfo = classInfo;
+        }
 
         let previousSelectedClass = document.getElementsByClassName('highlightedClass')[0]
         if(previousSelectedClass && previousSelectedClass.id != curSelectedClass) previousSelectedClass.classList.toggle('highlightedClass')
@@ -77,6 +88,80 @@ function highLightClasses(period) {
 
 let scheduleViewer = document.getElementById('scheduleViewer')
 
+function highlightConnectedPeriods(event) {
+    let target;
+    if(event.target.nodeName == "SPAN") {
+        target = event.target.parentElement;
+    } else if(event.target.classList.contains('class')) {
+        target = event.target
+    }
+    
+    for (let i = 0; i < classDivs.length; i++) {
+        if(classDivs[i].classList.contains('super_highlighted')) classDivs[i].classList.remove('super_highlighted')
+    }
+
+    if(!target) return;
+
+    if(target.classList.contains('highlighted')) {
+
+        if(selectedClassInfo.semesterLength == 1) {
+            let ind = Array.from(classDivs).indexOf(target)
+            if(ind <= 7 || ind >= 20) {
+                // Is on both a and b days
+                if(ind % 4 == 0 || ind % 4 == 2) {
+                    classDivs[ind].classList.add('super_highlighted')
+                    classDivs[ind + 1].classList.add('super_highlighted')
+                } else {
+                    classDivs[ind].classList.add('super_highlighted')
+                    classDivs[ind - 1].classList.add('super_highlighted')
+                }
+            } else {
+                // Is only on a or b days
+                classDivs[ind].classList.add('super_highlighted')
+            }
+        } else if(selectedClassInfo.semesterLength == 2) {
+            let ind = Array.from(classDivs).indexOf(target)
+            console.log(ind)
+            if(ind <= 7 || ind >= 20) {
+                // Is on both a and b days
+                if(ind % 4 == 1) {
+                    classDivs[ind - 1].classList.add('super_highlighted')
+                    classDivs[ind].classList.add('super_highlighted')
+                    classDivs[ind + 1].classList.add('super_highlighted')
+                    classDivs[ind + 2].classList.add('super_highlighted')
+                } else if(ind % 4 == 2) {
+                    classDivs[ind - 1].classList.add('super_highlighted')
+                    classDivs[ind - 2].classList.add('super_highlighted')
+                    classDivs[ind].classList.add('super_highlighted')
+                    classDivs[ind + 1].classList.add('super_highlighted')
+                } else if(ind % 4 == 0) {
+                    classDivs[ind].classList.add('super_highlighted')
+                    classDivs[ind + 1].classList.add('super_highlighted')
+                    classDivs[ind + 2].classList.add('super_highlighted')
+                    classDivs[ind + 3].classList.add('super_highlighted')
+                } else {
+                    classDivs[ind - 3].classList.add('super_highlighted')
+                    classDivs[ind - 2].classList.add('super_highlighted')
+                    classDivs[ind - 1].classList.add('super_highlighted')
+                    classDivs[ind].classList.add('super_highlighted')
+                }
+            } else {
+                // Is only on a or b days
+                if(ind % 4 <= 1) {
+                    classDivs[ind].classList.add('super_highlighted')
+                    classDivs[ind + 2].classList.add('super_highlighted')
+                } else if(ind % 4 >= 2){
+                    classDivs[ind].classList.add('super_highlighted')
+                    classDivs[ind - 2].classList.add('super_highlighted')
+                } else {
+                    classDivs[ind].classList.add('super_highlighted')
+                    classDivs[ind + 2].classList.add('super_highlighted')
+                }
+            }
+        }
+    }
+}
+
 function selectPeriod(event) {
     let target;
     if(event.target.nodeName == "SPAN") {
@@ -89,11 +174,30 @@ function selectPeriod(event) {
         document.getElementsByClassName('highlightedClass')[0].classList.remove('highlightedClass')
         for (let i = 0; i < classDivs.length; i++) {
             if(classDivs[i].classList.contains('highlighted')) classDivs[i].classList.remove('highlighted')
-            if(classDivs[i].children[0].innerHTML == selectedClass) classDivs[i].children[0].innerHTML = "Empty"
+            if(classDivs[i].children[0].innerHTML == "<strong>"+selectedClass+"</strong>") classDivs[i].children[0].innerHTML = "Empty"
         }
-        target.children[0].innerHTML = selectedClass
+
+        if(selectedClassInfo.semesterLength == 1) {
+            let ind = Array.from(classDivs).indexOf(target)
+            if(ind <= 7 || ind >= 20) {
+                // Is on both a and b days
+                if(ind % 4 == 0 || ind % 4 == 2) {
+                    classDivs[ind].children[0].innerHTML = "<strong>"+selectedClass+"</strong>"
+                    classDivs[ind + 1].children[0].innerHTML = "<strong>"+selectedClass+"</strong>"
+                } else {
+                    classDivs[ind].children[0].innerHTML = "<strong>"+selectedClass+"</strong>"
+                    classDivs[ind - 1].children[0].innerHTML = "<strong>"+selectedClass+"</strong>"
+                }
+            } else {
+                // Is only on a or b days
+                classDivs[ind].children[0].innerHTML = "<strong>"+selectedClass+"</strong>"
+            }
+        }
+
         selectedClass = null;
+        selectedClassInfo = null;
     }
 }
 
 scheduleViewer.addEventListener("mousedown", selectPeriod, false);
+scheduleViewer.addEventListener("mouseover", highlightConnectedPeriods, false);
