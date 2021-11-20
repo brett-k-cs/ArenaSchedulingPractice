@@ -94,6 +94,7 @@
     text-align: center;
     display: table;
     text-align: center;
+    cursor: auto;
 }
 
 #scheduleViewer > div > span {
@@ -111,6 +112,7 @@
 
 #scheduleViewer > .highlighted {
     background-color: rgb(48, 48, 48);
+    cursor: pointer;
 }
 
 #scheduleViewer > .header {

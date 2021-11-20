@@ -1,11 +1,4 @@
-let headers = document.getElementsByClassName('header')
-let topLeft = document.getElementById('topLeft')
-let aDayHeaders = document.getElementsByClassName('aDay')
-
-// topLeft.style.height = headers[1].clientHeight + aDayHeaders[0].clientHeight - 22 + "px"
-
 let classDivs = document.getElementsByClassName('class');
-// let avaliableClasses = document.getElementsByClassName('avaliableClass');
 
 for (let i = 0; i < classDivs.length; i++) {
     let span = document.createElement('span')
@@ -81,3 +74,26 @@ function highLightClasses(period) {
     }
 
 }
+
+let scheduleViewer = document.getElementById('scheduleViewer')
+
+function selectPeriod(event) {
+    let target;
+    if(event.target.nodeName == "SPAN") {
+        target = event.target.parentElement;
+    } else if(event.target.classList.contains('class')) {
+        target = event.target
+    }
+    if(!target) return;
+    if(target.classList.contains('highlighted')) {
+        document.getElementsByClassName('highlightedClass')[0].classList.remove('highlightedClass')
+        for (let i = 0; i < classDivs.length; i++) {
+            if(classDivs[i].classList.contains('highlighted')) classDivs[i].classList.remove('highlighted')
+            if(classDivs[i].children[0].innerHTML == selectedClass) classDivs[i].children[0].innerHTML = "Empty"
+        }
+        target.children[0].innerHTML = selectedClass
+        selectedClass = null;
+    }
+}
+
+scheduleViewer.addEventListener("mousedown", selectPeriod, false);
