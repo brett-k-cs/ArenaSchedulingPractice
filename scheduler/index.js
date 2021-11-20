@@ -173,7 +173,7 @@ function selectPeriod(event) {
         document.getElementsByClassName('highlightedClass')[0].classList.remove('highlightedClass')
         for (let i = 0; i < classDivs.length; i++) {
             if(classDivs[i].classList.contains('highlighted')) classDivs[i].classList.remove('highlighted')
-            if(classDivs[i].children[0].innerHTML == "<strong>"+selectedClass+"</strong>") classDivs[i].children[0].innerHTML = "Empty"
+            if(htmlDecode(classDivs[i].children[0].innerHTML) == selectedClass) classDivs[i].children[0].innerHTML = "Empty"
         }
 
         let ind = Array.from(classDivs).indexOf(target)
@@ -237,3 +237,8 @@ function selectPeriod(event) {
 
 scheduleViewer.addEventListener("mousedown", selectPeriod, false);
 scheduleViewer.addEventListener("mouseover", highlightConnectedPeriods, false);
+
+function htmlDecode(input) {
+    var doc = new DOMParser().parseFromString(input, "text/html");
+    return doc.documentElement.textContent;
+}
