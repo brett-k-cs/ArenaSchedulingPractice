@@ -24,8 +24,9 @@
     border-radius: 10px;
     width: 30vw;
     height: 700px;
-    min-width: 450px;
+    min-width: 400px;
     background-color: rgb(19, 19, 19);
+    margin-left: 20px;
 }
 
 .classPicker > .header {

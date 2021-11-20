@@ -176,8 +176,8 @@ function selectPeriod(event) {
             if(classDivs[i].children[0].innerHTML == "<strong>"+selectedClass+"</strong>") classDivs[i].children[0].innerHTML = "Empty"
         }
 
+        let ind = Array.from(classDivs).indexOf(target)
         if(selectedClassInfo.semesterLength == 1) {
-            let ind = Array.from(classDivs).indexOf(target)
             if(ind <= 7 || ind >= 20) {
                 // Is on both a and b days
                 if(ind % 4 == 0 || ind % 4 == 2) {
@@ -190,6 +190,43 @@ function selectPeriod(event) {
             } else {
                 // Is only on a or b days
                 classDivs[ind].children[0].innerHTML = "<strong>"+selectedClass+"</strong>"
+            }
+        }else if(selectedClassInfo.semesterLength == 2) {
+            if(ind <= 7 || ind >= 20) {
+                // Is on both a and b days
+                if(ind % 4 == 1) {
+                    classDivs[ind - 1].children[0].innerHTML = "<strong>"+selectedClass+"</strong>"
+                    classDivs[ind].children[0].innerHTML = "<strong>"+selectedClass+"</strong>"
+                    classDivs[ind + 1].children[0].innerHTML = "<strong>"+selectedClass+"</strong>"
+                    classDivs[ind + 2].children[0].innerHTML = "<strong>"+selectedClass+"</strong>"
+                } else if(ind % 4 == 2) {
+                    classDivs[ind - 1].children[0].innerHTML = "<strong>"+selectedClass+"</strong>"
+                    classDivs[ind - 2].children[0].innerHTML = "<strong>"+selectedClass+"</strong>"
+                    classDivs[ind].children[0].innerHTML = "<strong>"+selectedClass+"</strong>"
+                    classDivs[ind + 1].children[0].innerHTML = "<strong>"+selectedClass+"</strong>"
+                } else if(ind % 4 == 0) {
+                    classDivs[ind].children[0].innerHTML = "<strong>"+selectedClass+"</strong>"
+                    classDivs[ind + 1].children[0].innerHTML = "<strong>"+selectedClass+"</strong>"
+                    classDivs[ind + 2].children[0].innerHTML = "<strong>"+selectedClass+"</strong>"
+                    classDivs[ind + 3].children[0].innerHTML = "<strong>"+selectedClass+"</strong>"
+                } else {
+                    classDivs[ind - 3].children[0].innerHTML = "<strong>"+selectedClass+"</strong>"
+                    classDivs[ind - 2].children[0].innerHTML = "<strong>"+selectedClass+"</strong>"
+                    classDivs[ind - 1].children[0].innerHTML = "<strong>"+selectedClass+"</strong>"
+                    classDivs[ind].children[0].innerHTML = "<strong>"+selectedClass+"</strong>"
+                }
+            } else {
+                // Is only on a or b days
+                if(ind % 4 <= 1) {
+                    classDivs[ind].children[0].innerHTML = "<strong>"+selectedClass+"</strong>"
+                    classDivs[ind + 2].children[0].innerHTML = "<strong>"+selectedClass+"</strong>"
+                } else if(ind % 4 >= 2){
+                    classDivs[ind].children[0].innerHTML = "<strong>"+selectedClass+"</strong>"
+                    classDivs[ind - 2].children[0].innerHTML = "<strong>"+selectedClass+"</strong>"
+                } else {
+                    classDivs[ind].children[0].innerHTML = "<strong>"+selectedClass+"</strong>"
+                    classDivs[ind + 2].children[0].innerHTML = "<strong>"+selectedClass+"</strong>"
+                }
             }
         }
 
