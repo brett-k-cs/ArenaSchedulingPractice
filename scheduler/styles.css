@@ -143,3 +143,27 @@
     height: 20px;
     background-color: #11197F;
 }
+
+@media only screen and (max-width: 1200px) {
+    .sheduleContainer {
+        width: 90% !important;
+    }
+    .mainContainer {
+        display: block !important;
+    }
+    .classPicker {
+        margin-left: 0 !important;
+    }
+}
+
+@media only screen and (min-width: 1201px) {
+    .sheduleContainer {
+        width: 55vw !important;
+    }
+    .mainContainer {
+        display: flex !important;
+    }
+    .classPicker {
+        margin-left: 20px !important;
+    }
+}

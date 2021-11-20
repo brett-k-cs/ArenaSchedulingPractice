@@ -255,14 +255,11 @@ function resizeFunc() {
     || document.documentElement.clientWidth
     || document.body.clientWidth;
 
-    if(width < 1200) {
+    if(width <= 1200) {
         document.getElementById('main-text').innerHTML = "Choose your <span class=\"text-primary\">classes</span> below."
-        document.getElementsByClassName('sheduleContainer')[0].style.width = "90%"
-        document.getElementsByClassName('mainContainer')[0].style.display = "block";
-        document.getElementsByClassName('classPicker')[0].style.marginLeft = "";
+
     } else {
         document.getElementById('main-text').innerHTML = "Choose your <span class=\"text-primary\">classes</span> to the right."
-        document.getElementsByClassName('classPicker')[0].style.marginLeft = "20px"
-        document.getElementsByClassName('mainContainer')[0].style.display = "flex";
+
     }
 }
