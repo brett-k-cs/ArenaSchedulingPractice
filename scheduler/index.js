@@ -10,21 +10,6 @@ let classPicker = document.getElementsByClassName('classPicker')[0]
 
 classPicker.addEventListener("mousedown", chooseClass, false);
 
-let classes = {
-    testClass: {
-        semesterLength: 2,
-        avaliablePeriods: [0, 1, 2, 6, 7, 8]
-    },
-    "Principles of Engineering": {
-        semesterLength: 1,
-        avaliablePeriods: [2, 3, 5, 8]
-    },
-    "Engineering Design & Presentation 1": {
-        semesterLength: 2,
-        avaliablePeriods: [0, 1, 3, 5, 8]
-    }
-}
-
 for (let i = 0; i < Object.keys(classes).length; i++) {
     const name = Object.keys(classes)[i];
     let div = document.createElement('div');
